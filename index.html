@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paulo Jorge · Webdesign &amp; Comercial</title>
+<meta name="description" content="Webdesign &amp; Comercial unidos pelo crescimento da sua empresa. Sites completos, Landing Pages e BioSites.">
+<meta name="theme-color" content="#0B0B10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Paulo Jorge · Webdesign &amp; Comercial">
+<meta property="og:description" content="Webdesign &amp; Comercial unidos pelo crescimento da sua empresa.">
+<meta property="og:image" content="perfil.jpg">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="perfil.jpg" type="image/jpeg">
+<link rel="apple-touch-icon" href="perfil.jpg">
+
+<!-- A foto perfil.jpg deve ficar na mesma pasta deste index.html (nome todo em minúsculas). -->
+
+<!-- Aplica o tema salvo antes da página aparecer, para não piscar -->
+<script>
+(function () {
+  var tema = 'dark';
+  try {
+    var salvo = localStorage.getItem('pj-tema');
+    if (salvo === 'light' || salvo === 'dark') tema = salvo;
+  } catch (e) {}
+  document.documentElement.setAttribute('data-theme', tema);
+})();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Tokens de tema ---------- */
+:root {
+  --accent: #0000FF;
+  --bg: #0B0B10;
+  --card: #15151C;
+  --line: #2A2A36;
+  --text: #F3F3F7;
+  --muted: #A4A4B2;
+  --accent-text: #8C96FF;
+  --icon-bg: rgba(110, 125, 255, .14);
+  --glow-soft: rgba(0, 0, 255, .18);
+  --glow: rgba(0, 0, 255, .38);
+  --glow-strong: rgba(0, 0, 255, .55);
+  --speed: .22s;
+  color-scheme: dark;
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F4F4F8;
+  --card: #FFFFFF;
+  --line: #DCDCE6;
+  --text: #111118;
+  --muted: #585866;
+  --accent-text: #0000FF;
+  --icon-bg: rgba(0, 0, 255, .08);
+  --glow-soft: rgba(0, 0, 255, .11);
+  --glow: rgba(0, 0, 255, .23);
+  --glow-strong: rgba(0, 0, 255, .33);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+}
+a { color: inherit; text-decoration: none; }
+a, button { -webkit-tap-highlight-color: transparent; }
+svg { display: block; flex-shrink: 0; }
+
+/* Troca de tema gradual e rápida em tudo que muda de cor */
+body, body * {
+  transition:
+    background-color var(--speed) ease,
+    color var(--speed) ease,
+    border-color var(--speed) ease,
+    box-shadow var(--speed) ease,
+    transform .2s ease;
+}
+
+:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 3px; }
+
+.page {
+  width: 100%;
+  max-width: 460px;
+  padding: 24px 20px 40px;
+  padding-top: max(24px, env(safe-area-inset-top));
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- Topo: botão de tema ---------- */
+.topbar { display: flex; justify-content: flex-end; }
+.theme-toggle {
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; cursor: pointer;
+  box-shadow: 0 0 18px var(--glow-soft);
+}
+.theme-toggle:active { transform: scale(.94); }
+.theme-toggle .icon-moon { display: none; }
+[data-theme="light"] .theme-toggle .icon-sun { display: none; }
+[data-theme="light"] .theme-toggle .icon-moon { display: block; }
+
+/* ---------- Perfil ---------- */
+.profile { display: flex; flex-direction: column; gap: 18px; }
+.profile-row { display: flex; align-items: center; gap: 18px; }
+.avatar {
+  width: 104px; height: 104px; flex-shrink: 0;
+  border-radius: 999px;
+  padding: 2px;
+  background: var(--accent);
+}
+.avatar img {
+  width: 100%; height: 100%; display: block;
+  border-radius: 999px;
+  border: 3px solid var(--bg);
+  object-fit: cover; object-position: 50% 35%;
+  background: var(--card);
+}
+.profile-info { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
+.status {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 12px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  font-size: 12px; font-weight: 500; color: var(--muted);
+  white-space: nowrap;
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 999px; background: #22C55E;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .55); }
+  50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+}
+.name { margin: 0; font-weight: 800; font-size: 36px; line-height: 1.05; letter-spacing: -0.04em; }
+.username { font-size: 15px; font-weight: 500; color: var(--accent-text); }
+.tagline { margin: 0; font-size: 16px; line-height: 1.55; color: var(--muted); max-width: 380px; }
+
+/* ---------- Três botões ---------- */
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.tile {
+  min-height: 92px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  font-size: 13px; font-weight: 500;
+  box-shadow: 0 4px 22px var(--glow-soft);
+}
+.tile:active { transform: translateY(0) scale(.97); }
+
+/* ---------- Faixa animada ---------- */
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+  margin: 0 -20px;
+}
+.marquee-track {
+  display: flex; gap: 28px; width: max-content;
+  font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap;
+  animation: marquee 22s linear infinite;
+  padding-right: 28px;
+}
+.marquee-track .star { color: var(--accent-text); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---------- Botões grandes ---------- */
+.actions { display: flex; flex-direction: column; gap: 12px; }
+.cta, .secondary { display: flex; align-items: center; gap: 16px; border-radius: 22px; }
+.cta {
+  padding: 22px 20px;
+  background: var(--accent);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 1px var(--glow-soft), 0 10px 40px var(--glow);
+}
+.secondary {
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: 0 6px 28px var(--glow-soft);
+}
+.cta:active, .secondary:active { transform: translateY(0) scale(.985); }
+.btn-text { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 0; }
+.cta .btn-title { font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
+.cta .btn-sub { font-size: 14px; line-height: 1.45; color: #E2E2FF; }
+.secondary .btn-text { gap: 4px; }
+.secondary .btn-title { font-weight: 700; font-size: 17px; letter-spacing: -0.02em; }
+.secondary .btn-sub { font-size: 13px; line-height: 1.45; color: var(--muted); }
+.arrow { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.cta .arrow { width: 48px; height: 48px; border-radius: 14px; background: #FFFFFF; color: var(--accent); }
+.secondary .arrow { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); }
+.btn-icon {
+  width: 48px; height: 48px; flex-shrink: 0; border-radius: 14px;
+  background: var(--icon-bg); color: var(--accent-text);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.footer { text-align: center; font-size: 12px; color: var(--muted); padding-top: 8px; }
+
+/* ---------- Hover: só em aparelhos com mouse (evita botão "preso" no toque) ---------- */
+@media (hover: hover) {
+  .theme-toggle:hover { box-shadow: 0 0 24px var(--glow); }
+  .tile:hover { transform: translateY(-3px); box-shadow: 0 8px 30px var(--glow); }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--glow), 0 14px 52px var(--glow-strong); }
+  .secondary:hover { transform: translateY(-2px); box-shadow: 0 10px 36px var(--glow); }
+  .cta:hover .arrow, .secondary:hover .arrow { transform: rotate(45deg); }
+}
+
+/* ---------- Telas muito estreitas ---------- */
+@media (max-width: 360px) {
+  .page { padding-left: 16px; padding-right: 16px; }
+  .marquee { margin: 0 -16px; }
+  .avatar { width: 76px; height: 76px; }
+  .name { font-size: 28px; }
+  .profile-row { gap: 12px; }
+  .status { font-size: 10.5px; gap: 6px; padding: 4px 9px 4px 7px; }
+  .cta { padding: 20px 16px; gap: 12px; }
+}
+
+/* ---------- Acessibilidade: menos movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee-track, .status-dot { animation: none; }
+  body, body * { transition-duration: .01s; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="topbar">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Mudar para o tema claro">
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </button>
+  </header>
+
+  <section class="profile">
+    <div class="profile-row">
+      <div class="avatar">
+        <img src="perfil.jpg" alt="Foto de perfil de Paulo Jorge" width="600" height="600">
+      </div>
+      <div class="profile-info">
+        <span class="status"><span class="status-dot"></span>Disponível para novos projetos</span>
+        <h1 class="name">Paulo Jorge</h1>
+        <span class="username">@paulojorge.br</span>
+      </div>
+    </div>
+    <p class="tagline">Webdesign &amp; Comercial unidos pelo crescimento da sua empresa.</p>
+  </section>
+
+  <nav class="tiles" aria-label="Links principais">
+    <a class="tile" href="https://wa.me/559991953102?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20site." target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z" fill="currentColor"/></svg>
+      WhatsApp
+    </a>
+    <a class="tile" href="https://www.instagram.com/paulojorge.br/" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 18C15.3137 18 18 15.3137 18 12C18 8.68629 15.3137 6 12 6C8.68629 6 6 8.68629 6 12C6 15.3137 8.68629 18 12 18ZM12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16Z" fill="currentColor"/><path d="M18 5C17.4477 5 17 5.44772 17 6C17 6.55228 17.4477 7 18 7C18.5523 7 19 6.55228 19 6C19 5.44772 18.5523 5 18 5Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M1.65396 4.27606C1 5.55953 1 7.23969 1 10.6V13.4C1 16.7603 1 18.4405 1.65396 19.7239C2.2292 20.8529 3.14708 21.7708 4.27606 22.346C5.55953 23 7.23969 23 10.6 23H13.4C16.7603 23 18.4405 23 19.7239 22.346C20.8529 21.7708 21.7708 20.8529 22.346 19.7239C23 18.4405 23 16.7603 23 13.4V10.6C23 7.23969 23 5.55953 22.346 4.27606C21.7708 3.14708 20.8529 2.2292 19.7239 1.65396C18.4405 1 16.7603 1 13.4 1H10.6C7.23969 1 5.55953 1 4.27606 1.65396C3.14708 2.2292 2.2292 3.14708 1.65396 4.27606ZM13.4 3H10.6C8.88684 3 7.72225 3.00156 6.82208 3.0751C5.94524 3.14674 5.49684 3.27659 5.18404 3.43597C4.43139 3.81947 3.81947 4.43139 3.43597 5.18404C3.27659 5.49684 3.14674 5.94524 3.0751 6.82208C3.00156 7.72225 3 8.88684 3 10.6V13.4C3 15.1132 3.00156 16.2777 3.0751 17.1779C3.14674 18.0548 3.27659 18.5032 3.43597 18.816C3.81947 19.5686 4.43139 20.1805 5.18404 20.564C5.49684 20.7234 5.94524 20.8533 6.82208 20.9249C7.72225 20.9984 8.88684 21 10.6 21H13.4C15.1132 21 16.2777 20.9984 17.1779 20.9249C18.0548 20.8533 18.5032 20.7234 18.816 20.564C19.5686 20.1805 20.1805 19.5686 20.564 18.816C20.7234 18.5032 20.8533 18.0548 20.9249 17.1779C20.9984 16.2777 21 15.1132 21 13.4V10.6C21 8.88684 20.9984 7.72225 20.9249 6.82208C20.8533 5.94524 20.7234 5.49684 20.564 5.18404C20.1805 4.43139 19.5686 3.81947 18.816 3.43597C18.5032 3.27659 18.0548 3.14674 17.1779 3.0751C16.2777 3.00156 15.1132 3 13.4 3Z" fill="currentColor"/></svg>
+      Instagram
+    </a>
+  </nav>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Webdesign</span><span class="star">✦</span><span>Comercial</span><span class="star">✦</span><span>Landing Pages</span><span class="star">✦</span><span>Estratégia</span><span class="star">✦</span><span>Conversão</span><span class="star">✦</span>
+      <span>Webdesign</span><span class="star">✦</span><span>Comercial</span><span class="star">✦</span><span>Landing Pages</span><span class="star">✦</span><span>Estratégia</span><span class="star">✦</span><span>Conversão</span><span class="star">✦</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="cta" href="https://wa.me/559991953102?text=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20um%20site." target="_blank" rel="noopener">
+      <span class="btn-text">
+        <span class="btn-title">Solicitar orçamento</span>
+        <span class="btn-sub">Sites completos, Landing Pages &amp; BioSites — com foco em maximizar o seu comercial.</span>
+      </span>
+      <span class="arrow">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <footer class="footer">© <span id="ano">2026</span> Paulo Jorge</footer>
+</main>
+
+<script>
+(function () {
+  var raiz = document.documentElement;
+  var botao = document.getElementById('theme-toggle');
+  var metaCor = document.querySelector('meta[name="theme-color"]');
+
+  function aplicar(tema) {
+    raiz.setAttribute('data-theme', tema);
+    botao.setAttribute('aria-label', tema === 'dark' ? 'Mudar para o tema claro' : 'Mudar para o tema escuro');
+    if (metaCor) metaCor.setAttribute('content', tema === 'dark' ? '#0B0B10' : '#F4F4F8');
+  }
+
+  aplicar(raiz.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  botao.addEventListener('click', function () {
+    var novo = raiz.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    aplicar(novo);
+    try { localStorage.setItem('pj-tema', novo); } catch (e) {}
+  });
+
+  document.getElementById('ano').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
