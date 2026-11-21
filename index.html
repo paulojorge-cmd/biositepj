@@ -208,40 +208,37 @@ html, body, body * {
   display: flex; align-items: center; justify-content: center;
 }
 
-/* ---------- Portfólio (em breve) ---------- */
+/* ---------- Portfólio ---------- */
 .portfolio { margin-top: 44px; }
-.section-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .section-title { margin: 0; font-weight: 600; font-size: 22px; letter-spacing: -0.025em; }
 .section-sub { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--muted); }
-.spinner {
-  width: 18px; height: 18px; flex-shrink: 0; border-radius: 999px;
-  border: 2px solid var(--line); border-top-color: var(--accent-text);
-  animation: spin .9s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.sk-card {
-  margin-top: 16px;
+.projects { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+.project {
+  display: block;
   border-radius: 16px;
   border: 1px solid var(--line);
   background: var(--card);
   overflow: hidden;
   box-shadow: 0 6px 24px var(--glow-soft);
 }
-.sk {
-  display: block;
-  border-radius: 8px;
-  background: linear-gradient(90deg, var(--sk) 25%, var(--sk-hi) 50%, var(--sk) 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+.project:active { transform: scale(.985); }
+.project-img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 16 / 9; object-fit: cover; object-position: top center;
+  border-bottom: 1px solid var(--line);
+  background: var(--sk);
 }
-@keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
-.sk-image { aspect-ratio: 16 / 9; border-radius: 0; }
-.sk-body { display: flex; align-items: center; gap: 16px; padding: 16px; }
-.sk-lines { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 0; }
-.sk-line-title { height: 14px; width: 48%; }
-.sk-line { height: 10px; width: 92%; }
-.sk-line.short { width: 68%; }
-.sk-btn { width: 92px; height: 38px; border-radius: 10px; flex-shrink: 0; }
+.project-body { display: flex; align-items: center; gap: 14px; padding: 14px 14px 14px 16px; }
+.project-info { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0; }
+.project-tag { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+.project-name { margin: 0; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; }
+.project-desc { margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
+.project-url { font-size: 12px; color: var(--muted); opacity: .8; }
+.project-go {
+  width: 38px; height: 38px; flex-shrink: 0; border-radius: 10px;
+  background: var(--accent); color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+}
 
 .footer { text-align: center; font-size: 12px; color: var(--muted); margin-top: 36px; }
 
@@ -249,6 +246,8 @@ html, body, body * {
 @media (hover: hover) {
   .theme-toggle:hover { box-shadow: 0 0 24px var(--glow); }
   .tile:hover { transform: translateY(-2px); box-shadow: 0 8px 26px var(--glow); }
+  .project:hover { transform: translateY(-2px); box-shadow: 0 10px 32px var(--glow); }
+  .project:hover .project-go { transform: rotate(45deg); }
   .cta:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--glow), 0 14px 48px var(--glow-strong); }
   .cta:hover .arrow { transform: rotate(45deg); }
 }
@@ -261,13 +260,11 @@ html, body, body * {
   .name { font-size: 26px; }
   .profile-row { gap: 12px; }
   .status { font-size: 10.5px; gap: 6px; padding: 4px 9px 4px 7px; }
-  .sk-btn { width: 76px; }
 }
 
 /* ---------- Acessibilidade: menos movimento ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track, .status-dot, .sk { animation: none; }
-  .spinner { animation-duration: 2.4s; }
+  .marquee-track, .status-dot { animation: none; }
   html, body, body * { transition-duration: .01s; }
 }
 </style>
@@ -327,21 +324,33 @@ html, body, body * {
   </div>
 
   <section class="portfolio" aria-labelledby="portfolio-titulo">
-    <div class="section-head">
-      <h2 class="section-title" id="portfolio-titulo">Portfólio</h2>
-      <span class="spinner" aria-hidden="true"></span>
-    </div>
-    <p class="section-sub">Em breve...</p>
-    <div class="sk-card" aria-hidden="true">
-      <span class="sk sk-image"></span>
-      <div class="sk-body">
-        <div class="sk-lines">
-          <span class="sk sk-line-title"></span>
-          <span class="sk sk-line"></span>
-          <span class="sk sk-line short"></span>
+    <h2 class="section-title" id="portfolio-titulo">Portfólio</h2>
+    <p class="section-sub">Projetos publicados e no ar.</p>
+    <div class="projects">
+      <a class="project" href="https://raiiracarvalho.com.br" target="_blank" rel="noopener">
+        <img class="project-img" src="portfolio/raiira-carvalho.jpg" alt="Página inicial do site da Dra. Raiíra Carvalho" width="960" height="540" loading="lazy">
+        <div class="project-body">
+          <div class="project-info">
+            <span class="project-tag">Site · Saúde</span>
+            <h3 class="project-name">Dra. Raiíra Carvalho</h3>
+            <p class="project-desc">Site para nutricionista clínica em São Luís, focado em agendamento de consultas.</p>
+            <span class="project-url">raiiracarvalho.com.br</span>
+          </div>
+          <span class="project-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
         </div>
-        <span class="sk sk-btn"></span>
-      </div>
+      </a>
+      <a class="project" href="https://speedwrap.com.br/diamond" target="_blank" rel="noopener">
+        <img class="project-img" src="portfolio/speedwrap-diamond.jpg" alt="Página da Speed Wrap Diamond sobre proteção de pintura PPF" width="960" height="540" loading="lazy">
+        <div class="project-body">
+          <div class="project-info">
+            <span class="project-tag">Landing Page · Automotivo</span>
+            <h3 class="project-name">Speed Wrap Diamond</h3>
+            <p class="project-desc">Landing Page de PPF para veículos premium, focada em agendar avaliações técnicas.</p>
+            <span class="project-url">speedwrap.com.br/diamond</span>
+          </div>
+          <span class="project-go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></span>
+        </div>
+      </a>
     </div>
   </section>
 
